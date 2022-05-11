@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import Button from 'elements/Button';
 import { InputNumber, InputDate } from 'elements/Form';
 
-export default class BookingForm extends Component {
+class BookingForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,6 +64,19 @@ export default class BookingForm extends Component {
     }
   }
 
+  startBooking = () => {
+    const { data } = this.state;
+    this.props.startBooking({
+      _id: this.props.itemDetails._id,
+      duration: data.duration,
+      date: {
+        startDate: data.date.startDate,
+        endDate: data.date.endDate,
+      },
+    });
+    this.props.history.push('/checkout');
+  };
+
   render() {
     const { data } = this.state;
     const { itemDetails } = this.props;
@@ -74,7 +87,7 @@ export default class BookingForm extends Component {
         <h5 className="h2 text-teal mb-4">
           ${itemDetails.price}{' '}
           <span className="text-gray-500 font-weight-light">
-            / {itemDetails.unit}
+            per {itemDetails.unit}
           </span>
         </h5>
 
@@ -99,7 +112,7 @@ export default class BookingForm extends Component {
           <span className="text-gray-900">
             ${itemDetails.price * data.duration} USD
           </span>{' '}
-          for{' '}
+          per{' '}
           <span className="text-gray-900">
             {data.duration} {itemDetails.unit}
           </span>
@@ -123,3 +136,5 @@ BookingForm.propTypes = {
   itemDetails: propTypes.object,
   startBooking: propTypes.func,
 };
+
+export default withRouter(BookingForm);
