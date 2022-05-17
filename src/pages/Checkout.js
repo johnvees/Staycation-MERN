@@ -232,4 +232,4 @@ const mapStateToProps = (state) => ({
   page: state.page,
 });
 
-export default connect(mapStateToProps, { submitBooking })(Checkout);
+export default connect(mapStateToProps)(Checkout);

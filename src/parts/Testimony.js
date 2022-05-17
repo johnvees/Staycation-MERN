@@ -1,7 +1,7 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
 
-import TestimonyAccent from 'assets/images/testimonial-landingpage-frame.jpg';
+import TestimonyAccent from '../assets/images/testimonial-landingpage-frame.jpg';
 
 import Star from 'elements/Star';
 import Button from 'elements/Button';
@@ -11,13 +11,13 @@ export default function Testimony({ data }) {
     <Fade bottom>
       <section className="container">
         <div className="row align-items-center">
-          <div className="col-auto" style={{ marginRight: 70 }}>
+          <div className="col-auto" style={{ marginRight: 60 }}>
             <div
               className="testimonial-hero"
               style={{ margin: `30px 0 0 30px` }}
             >
               <img
-                src={data.imageUrl}
+                src={`${process.env.REACT_APP_HOST}/${data.imageUrl}`}
                 alt="Testimonial"
                 className="position-absolute"
                 style={{ zIndex: 1 }}
@@ -32,8 +32,7 @@ export default function Testimony({ data }) {
           </div>
           <div className="col">
             <h4 style={{ marginBottom: 40 }}>{data.name}</h4>
-
-            <Star value={data.rate} width={35} height={35} spacing={4}></Star>
+            <Star value={data.rate} width={35} height={35} spacing={4} />
             <h5 className="h2 font-weight-light line-height-2 my-3">
               {data.content}
             </h5>
